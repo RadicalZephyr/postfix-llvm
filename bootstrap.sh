@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 apt-get update
 
 # General development dependencies
@@ -31,3 +33,12 @@ tar xf cfe-3.5.0.src.tar.xz -C llvm-3.5/tools
 
 # Rename to a sane thing for building
 mv llvm-3.5/tools/cfe-3.5.0.src llvm-3.5/tools/clang
+
+
+# Do the actual build via cmake
+mkdir build
+cd build
+
+cmake ../llvm-3.5 -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX:PATH=/usr
+
+make && make install
