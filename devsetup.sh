@@ -9,6 +9,7 @@ unzip master.zip
 
 shopt -s dotglob
 
+mv -vf home-master/.bashrc ./
 mv -vn home-master/* ./
 mv -vn home-master/.ssh/* .ssh/
 
