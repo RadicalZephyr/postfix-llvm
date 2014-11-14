@@ -18,9 +18,9 @@ int main(int argc, char **argv) {
     cl::ParseCommandLineOptions(argc, argv, " Postfix compiler\n");
 
     if (InputProgram == "") {
-        errs() << "Error: You must provide a postfix program as input."
+        errs() << "Error: You must provide a postfix program as input.\n"
             "Use --help to see the options.\n";
-        abort();
+        exit(1);
     }
 
     return 0;
