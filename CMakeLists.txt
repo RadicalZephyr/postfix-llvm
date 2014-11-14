@@ -11,8 +11,6 @@ message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
 # you will need to enable C++11 support
 # for your compiler.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -v")
-set(CMAKE_LD_FLAGS "${CMAKE_LD_FLAGS} -L/usr/local/Cellar/llvm/3.5.0/lib")
-set(CMAKE_CPP_FLAGS "${CMAKE_CPP_FLAGS} -I/usr/local/opt/llvm/include")
 
 include_directories(${LLVM_INCLUDE_DIRS})
 add_definitions(${LLVM_DEFINITIONS})
