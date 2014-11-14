@@ -30,6 +30,9 @@ apt-get install -y clang-modernize-3.4 clang-format-3.4
 # Setup my personal configuration files
 apt-get install -y unzip
 
+# Setup dotfiles, and the build folder as the vagrant user
+su vagrant
+
 pushd ~ >/dev/null 2>&1
 
 wget https://github.com/RadicalZephyr/home/archive/master.zip
@@ -44,9 +47,6 @@ mv -vn home-master/.ssh/* .ssh/
 shopt -u dotglob
 
 popd >/dev/null 2>&1
-
-# Setup the build folder as the vagrant user
-su vagrant
 
 mkdir -p postfix-build
 cd postfix-build
