@@ -19,12 +19,13 @@ apt-get update
 apt-get install -y cmake build-essential
 
 # Install llvm libraries
-apt-get install -y libllvm-3.4-ocaml-dev libllvm3.4 libllvm3.4-dbg lldb-3.4 llvm-3.4 llvm-3.4-dev llvm-3.4-doc llvm-3.4-examples llvm-3.4-runtime  lldb-3.4-dev
+apt-get install -y libllvm3.4 libllvm3.4-dbg lldb-3.4 llvm-3.4 llvm-3.4-dev llvm-3.4-doc llvm-3.4-examples llvm-3.4-runtime  lldb-3.4-dev
 
 # Install clang compiler
 apt-get install -y clang-3.4 clang-3.4-doc libclang-common-3.4-dev libclang-3.4-dev libclang1-3.4 libclang1-3.4-dbg
 
-apt-get install -y clang-modernize-3.4 clang-format-3.4 python-clang-3.4
+# Other clang based tools
+apt-get install -y clang-modernize-3.4 clang-format-3.4
 
 # Setup my personal configuration files
 apt-get install -y unzip
