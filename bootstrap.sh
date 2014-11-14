@@ -41,4 +41,4 @@ cd build
 
 cmake ../llvm-3.5 -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX:PATH=/usr
 
-make && make install
+make && make check && make install
