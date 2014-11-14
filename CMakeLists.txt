@@ -10,7 +10,9 @@ message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
 # E.g. if using the C++ header files
 # you will need to enable C++11 support
 # for your compiler.
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -v")
+set(CMAKE_LD_FLAGS "${CMAKE_LD_FLAGS} -L/usr/local/Cellar/llvm/3.5.0/lib")
+set(CMAKE_CPP_FLAGS "${CMAKE_CPP_FLAGS} -I/usr/local/opt/llvm/include")
 
 include_directories(${LLVM_INCLUDE_DIRS})
 add_definitions(${LLVM_DEFINITIONS})
@@ -22,5 +24,7 @@ add_executable(postfix postfix.cpp)
 # that we wish to use
 llvm_map_components_to_libnames(llvm_libs support core interpreter)
 
+message(STATUS "LLVM libnames needed: ${llvm_libs}")
+
 # Link against LLVM libraries
-target_link_libraries(simple-tool ${llvm_libs})
+target_link_libraries(postfix ${llvm_libs})
