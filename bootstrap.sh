@@ -1,31 +1,33 @@
 #!/usr/bin/env bash
 
-cat >> /etc/apt/sources.list <<EOF
-deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty main
-deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty main
-# 3.4
-deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.4 main
-deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.4 main
-# 3.5
-deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.5 main
-deb-src http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.5 main
-EOF
-
-wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add -
-
 apt-get update
 
 # General development dependencies
-apt-get install -y cmake build-essential
+apt-get install -y cmake build-essential unzip gnupg
 
-# Install llvm libraries
-apt-get install -y libllvm3.4 libllvm3.4-dbg lldb-3.4 llvm-3.4 llvm-3.4-dev llvm-3.4-doc llvm-3.4-examples llvm-3.4-runtime  lldb-3.4-dev
+mkdir -p llvm-build
+cd llvm-build
 
-# Install clang compiler
-apt-get install -y clang-3.4 clang-3.4-doc libclang-common-3.4-dev libclang-3.4-dev libclang1-3.4 libclang1-3.4-dbg
+# Download llvm sources
+wget http://llvm.org/releases/3.5.0/llvm-3.5.0.src.tar.xz
+wget http://llvm.org/releases/3.5.0/llvm-3.5.0.src.tar.xz.sig
 
-# Other clang based tools
-apt-get install -y clang-modernize-3.4 clang-format-3.4
+# Verify llvm sources
+gpg --verify llvm-3.5.0.src.tar.xz.sig llvm-3.5.0.src.tar.xz || exit 1
 
-# Setup my personal configuration files
-apt-get install -y unzip
+tar xf llvm-3.5.0.src.tar.xz
+
+# Rename to a more sane name
+mv llvm-3.5.0.src llvm-3.5
+
+# Download clang
+wget http://llvm.org/releases/3.5.0/cfe-3.5.0.src.tar.xz
+wget http://llvm.org/releases/3.5.0/cfe-3.5.0.src.tar.xz.sig
+
+# Verify clang sources
+gpg --verify cfe-3.5.0.src.tar.xz.sig cfe-3.5.0.src.tar.xz || exit 1
+
+tar xf cfe-3.5.0.src.tar.xz -C llvm-3.5/tools
+
+# Rename to a sane thing for building
+mv llvm-3.5/tools/cfe-3.5.0.src llvm-3.5/tools/clang
