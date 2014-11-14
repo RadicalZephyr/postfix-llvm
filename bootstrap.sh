@@ -29,3 +29,11 @@ mv -vn home-master/.ssh/* .ssh/
 shopt -u dotglob
 
 popd >/dev/null 2>&1
+
+# Setup the build folder as the vagrant user
+su vagrant
+
+mkdir -p postfix-build
+cd postfix-build
+
+cmake /vagrant
