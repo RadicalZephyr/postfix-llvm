@@ -10,11 +10,21 @@
 
 using namespace llvm;
 
+// Prototypes
+
+void gen_code(SexpPtr expr);
+
+
+// Options
+
 static cl::opt<std::string>
 InputProgram(cl::Positional, cl::desc("<postfix input>"));
 
 static cl::opt<std::string>
 OutputFilename("o", cl::desc("Output filename"), cl::value_desc("filename"));
+
+
+// Main
 
 int main(int argc, char **argv) {
     cl::ParseCommandLineOptions(argc, argv, " Postfix compiler\n");
@@ -31,8 +41,8 @@ int main(int argc, char **argv) {
 
     try {
         SexpPtr expr = sexper.getNextSexp();
-        expr->print();
-        std::cout << std::endl;
+
+        gen_code(expr);
 
     } catch (ParseExceptionPtr e) {
         std::cerr << e->what() << std::endl << std::endl;
@@ -43,4 +53,11 @@ int main(int argc, char **argv) {
         return 1;
     }
     return 0;
+}
+
+void gen_code(SexpPtr expr) {
+
+    // First check that we get 'postfix' then a number
+
+    // The number is the number of arguments that we expect
 }
