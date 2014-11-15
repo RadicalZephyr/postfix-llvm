@@ -57,7 +57,11 @@ int main(int argc, char **argv) {
 
 void gen_code(SexpPtr expr) {
 
-    // First check that we get 'postfix' then a number
+    // expr MUST be a list
 
-    // The number is the number of arguments that we expect
+ invalid:
+    std::cerr << "You must enter a valid postfix program of the form: ";
+    std::cerr << std::endl << " (postfix <number-of-args> ...)" << std::endl;
+    exit(1);
+
 }
