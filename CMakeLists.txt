@@ -16,7 +16,7 @@ include_directories(${LLVM_INCLUDE_DIRS})
 add_definitions(${LLVM_DEFINITIONS})
 
 set(exe_name "postfix")
-set(source_files postfix.cpp sexp/sexp.cpp)
+set(source_files postfix.cpp ast.cpp sexp/sexp.cpp)
 
 # Now build our tools
 add_executable(${exe_name} ${source_files})
