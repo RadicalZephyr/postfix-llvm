@@ -1,5 +1,8 @@
-#include "ast.h"
+#include <algorithm>
+#include <string>
+#include <cctype>
 
+#include "ast.h"
 
 
 void AstVisitor::visit(List *e) {
@@ -7,15 +10,24 @@ void AstVisitor::visit(List *e) {
 }
 
 void AstVisitor::visit(Atom *e) {
+    std::string text = e->getText();
+
+    if (all_of(text.begin(), text.end(),
+               [](char c){return isdigit(c);})) {
+
+        Integer i(text);
+
+    } else {
+        Command c(text);
+
+    }
+}
+
+Command::Command(std::string &text) {
 
 }
 
-
-Command::Command(Atom *e) {
-
-}
-
-Integer::Integer(Atom *e) {
+Integer::Integer(std::string &text) {
 
 }
 

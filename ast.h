@@ -31,7 +31,7 @@ class Command: public AST {
 
  public:
 
-    Command(Atom *e);
+    Command(std::string &text);
 
 };
 
@@ -40,7 +40,7 @@ class Integer: public AST {
     int m_value;
 
  public:
-    Integer(Atom *e);
+    Integer(std::string &text);
 
 };
 
