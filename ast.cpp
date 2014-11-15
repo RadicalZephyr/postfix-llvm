@@ -19,10 +19,16 @@ Integer::Integer(Atom *e) {
 
 }
 
-ExecSeq::ExecSeq(List *e) {
+ExecSeq::ExecSeq(AstVisitor &v, List *e) {
+
+    for (auto itr = e->begin(); itr < e->end(); itr++) {
+        (*itr)->
+    }
 
 }
 
-Program::Program(List *e): ExecSeq(e) {
-    // Validate that the first element is the
+Program::Program(AstVisitor &v, List *e): ExecSeq(v, e) {
+    // Validate that the first element is the command postfix
+
+    // And that the second is
 }

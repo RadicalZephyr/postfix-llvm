@@ -49,12 +49,12 @@ class ExecSeq: public AST {
     std::vector<AST> m_els;
 
  public:
-    ExecSeq(List *e);
+    ExecSeq(AstVisitor &v, List *e);
 
 };
 
 class Program: public ExecSeq {
 
  public:
-    Program(List *e);
+    Program(AstVisitor &v, List *e);
 };
