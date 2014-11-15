@@ -30,7 +30,10 @@ int main(int argc, char **argv) {
     Sexpressionizer sexper(postfixstream);
 
     try {
-        SexpPtr exprs = sexper.getNextSexp();
+        SexpPtr expr = sexper.getNextSexp();
+        expr->print();
+        std::cout << std::endl;
+
     } catch (ParseExceptionPtr e) {
         std::cerr << e->what() << std::endl << std::endl;
         std::cerr << InputProgram << std::endl;
@@ -39,6 +42,5 @@ int main(int argc, char **argv) {
         std::cerr << "^" << std::endl;
         return 1;
     }
-
     return 0;
 }
