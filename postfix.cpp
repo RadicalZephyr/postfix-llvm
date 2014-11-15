@@ -32,7 +32,11 @@ int main(int argc, char **argv) {
     try {
         SexpPtr exprs = sexper.getNextSexp();
     } catch (ParseExceptionPtr e) {
-        std::cerr << e->what() << std::endl;
+        std::cerr << e->what() << std::endl << std::endl;
+        std::cerr << InputProgram << std::endl;
+
+        std::cerr.width(postfixstream.gcount());
+        std::cerr << "^" << std::endl;
         return 1;
     }
 
