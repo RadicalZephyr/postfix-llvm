@@ -5,8 +5,17 @@
 #include "ast.h"
 
 
-void AstVisitor::visit(List *e) {
+AstVisitor::AstVisitor(void):m_first(true) {}
 
+void AstVisitor::visit(List *e) {
+    if (m_first) {
+        m_first = false;
+
+        Program p(*this, e);
+    } else {
+
+        ExecSeq es(*this, e);
+    }
 }
 
 void AstVisitor::visit(Atom *e) {

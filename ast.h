@@ -6,8 +6,12 @@
 
 
 class AstVisitor {
+    bool m_first;
 
  public:
+
+    AstVisitor(void);
+
     virtual void visit(List *e);
 
     virtual void visit(Atom *e);
