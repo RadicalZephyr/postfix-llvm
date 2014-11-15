@@ -43,7 +43,7 @@ Integer::Integer(std::string &text) {
 ExecSeq::ExecSeq(AstVisitor &v, List *e) {
 
     for (auto itr = e->begin(); itr < e->end(); itr++) {
-        (*itr)->
+        (*itr)->accept(v);
     }
 
 }

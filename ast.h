@@ -5,7 +5,7 @@
 #include "sexp/sexp.h"
 
 
-class AstVisitor {
+class AstVisitor: public Visitor {
     bool m_first;
 
  public:
